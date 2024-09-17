@@ -8,7 +8,7 @@ interface IDropDownList {
     dropDown: boolean,
     links: Array<ILink>
 }
-export const DropDownList: React.FC<IDropDownList> = ({links, dropDown, setDropDown}) => {
+export const DropDownList: React.FC<IDropDownList> = ({links, dropDown,}) => {
     
     return(
         <DropDownListSC

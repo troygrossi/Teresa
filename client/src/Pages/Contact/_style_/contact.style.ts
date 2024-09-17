@@ -1,5 +1,4 @@
 import { styled } from "@mui/material";
-import { paletteSC, palette, font } from "../../../palette/palette";
 import { IWindowState } from "../../../redux/slice/window.slice";
 
 interface IStyle {
@@ -9,7 +8,7 @@ interface IStyle {
 export const Style = () => {
   
 
-    const ContactSC = styled("div")<IStyle>(({ window }) => ({
+    const ContactSC = styled("div")<IStyle>(() => ({
         boxSizing: 'border-box',
         margin: '200px auto 0px auto',
         width: '70%',
