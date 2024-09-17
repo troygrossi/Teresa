@@ -1,102 +1,211 @@
 import { styled } from "@mui/material";
+import { paletteSC, palette, font } from "../../../palette/palette";
+import { IWindowState } from "../../../redux/slice/window.slice";
+
+interface IStyle {
+  window?: IWindowState["windowQuery"];
+  dropDown?: boolean,
+  count?: number
+}
 
 export const Style = () => {
-  const HeaderSC = styled("div")({
+  const HeaderSC = styled("div")<IStyle>(({ window }) => ({
     position: "fixed",
     boxSizing: "border-box",
+    fontFamily: font.primary,
     height: "150px",
     width: "100%",
-    background: 'linear-gradient(45deg, rgb(0, 0, 0, .8) 30%, rgb(50, 50, 50, .8) 10%, rgb(0, 0, 0, .8) 51%)',
-boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
-backdropFilter: 'blur( 4.5px )',
-webkitBackdropFilter: 'blur( 4.5px )',
-borderRadius: '0px 0px 15px 15px',
-border: '3px solid rgba( 255, 255, 255, 0.18 )',
-borderTop: 'none'
-  });
+    ...paletteSC.header.one(window),
+    //
+    transition: "height 0.15s ease-out",
+    ...(window?.tabletBig && {
+      height: "100px",
+    }),
+    ...(window?.tabletSmall && {
+      height: "80px",
+    }),
+    ...(window?.mobile && {
+      borderRadius: '8px',
+      height: "75px",
+    }),
+  }));
   HeaderSC.displayName = "HeaderSC";
-  const leftSideContainer = (): React.CSSProperties => ({
+  const leftSideContainer = ({ window }: IStyle): React.CSSProperties => ({
     position: "absolute",
-    left: "50px",
-    width: "22%",
+    left: "1%",
+    width: "50%",
+    maxWidth: "800px",
     height: "100%",
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center",
     //
     boxSizing: "border-box",
+    ...(window?.mobile && {
+      left: "4%",
+      width: "70%",
+    }),
   });
-  const HomeIconSC = styled("div")({
-    height: "70px",
-    width: "70px",
+  const HomeIconSC = styled("div")<IStyle>(({ window }) => ({
+    height: "50%",
+    width: "auto",
     cursor: "pointer",
     borderRadius: "10px",
+    padding: "10px",
     zIndex: 100,
-    border:'5px solid rgb(255, 255, 255)',
-    padding: '20px',
-    transition: 'box-shadow 0.1s ease-out, background 0.1s ease-out, color 0.1s ease-out',
+    border: `5px solid ${palette.tertiary()}`,
+
+    transition:
+      "box-shadow 0.1s ease-out, background 0.1s ease-out, padding 0.1s ease-out",
     "&:hover": {
       background: "rgb(50, 50, 50, .2)",
       boxShadow: "0px 0px 20px 5px rgb(255, 255, 255, .2)",
     },
-  });
+    ...(window?.tabletSmall && {
+      padding: "5px",
+      height: "50%",
+      border: `4px solid ${palette.tertiary()}`,
+    }),
+    ...(window?.mobile && {
+      padding: "7px",
+      height: "50%",
+      border: `3px solid ${palette.tertiary()}`,
+    }),
+  }));
   HomeIconSC.displayName = "HomeIconSC";
-  const TitleSC = styled("div")({
-    fontSize: "90px",
-    color: "white",
-    height: "100%",
-    fontFamily: "cursive",
+  const TitleSC = styled("div")<IStyle>(({ window }) => ({
+    color: palette.tertiary(),
+    height: "90%",
     display: "flex",
-    alignItems: "flex-end",
-  });
+    alignItems: "center",
+    //
+    paddingTop: "50px",
+    marginLeft: "50px",
+    fontSize: "clamp(10px, 5vw, 70px)",
+    ...(window?.tabletBig && {
+      marginLeft: "25px",
+      paddingTop: "30px",
+    }),
+    ...(window?.tabletSmall && {
+      marginLeft: "20px",
+      paddingTop: "30px",
+    }),
+    ...(window?.mobile && {
+      marginLeft: "15px",
+      fontSize: "7vw",
+      paddingTop: "25px",
+    }),
+  }));
   TitleSC.displayName = "TitleSC";
 
-  const rightSideContainer = (): React.CSSProperties => ({
+  const rightSideContainer = ({ window }: IStyle): React.CSSProperties => ({
     position: "absolute",
-    right: "30%",
-    width: "20%",
+    right: "5%",
+    width: "45%",
     height: "100%",
     display: "flex",
-    justifyContent: "space-around",
-    alignItems: "flex-end",
+    justifyContent: "flex-end",
+    alignItems: "center",
     //
     boxSizing: "border-box",
-    paddingBottom: "20px",
+
+    transition: "right 0.15s ease-out",
+    ...(window?.tabletBig && {
+      right: "3%",
+    }),
+    ...(window?.tabletSmall && {
+      right: "3%",
+    }),
+    ...(window?.mobile && {
+      right: "7%",
+    }),
   });
-  const ContactNavSC = styled("div")({
-    fontSize: "30px",
-    color: "white",
-    height: "auto",
-    fontFamily: "cursive",
+
+  const LinkSC = styled("div")<IStyle>(({ window }) => ({
+    fontSize: "clamp(14px, 2vw, 50px)",
+    margin: "0px 20px 0px 20px",
+    color: palette.tertiary(),
+    height: "40px",
     display: "flex",
     alignItems: "center",
     borderRadius: "10px",
     cursor: "pointer",
+    boxSizing:'border-box',
     padding: "2px",
-    transition: 'box-shadow 0.15s ease-out, background 0.15s ease-out, color 0.15s ease-out',
+    marginTop: '75px',
+    transition:
+      "box-shadow 0.15s ease-out, background 0.15s ease-out, margin 0.15s ease-out",
     "&:hover": {
-        background: "rgb(150, 150, 150, .17)",
-        boxShadow: "0px 0px 20px 7px rgb(160, 160, 160, .19)",
+      background: "rgb(150, 150, 150, .17)",
+      boxShadow: "0px 0px 20px 7px rgb(160, 160, 160, .19)",
     },
-  });
-  TitleSC.displayName = "ContactNavSC";
-  const CalendarNavSC = styled("div")({
-    fontSize: "30px",
-    color: "white",
-    height: "auto",
-    fontFamily: "cursive",
-    display: "flex",
-    alignItems: "center",
-    cursor: "pointer",
-    borderRadius: "10px",
-    padding: "2px",
-    transition: 'box-shadow 0.15s ease-out, background 0.15s ease-out, color 0.15s ease-out',
-    "&:hover": {
-        background: "rgb(150, 150, 150, .17)",
-        boxShadow: "0px 0px 20px 7px rgb(160, 160, 160, .19)",
-    },
-  });
+    ...(window?.tabletBig &&
+      {
+        // margin: "0px 12px 0px 12px",
+        // fontSize: "23px",
+        marginTop: '55px',
+      }),
+    ...(window?.tabletSmall && {
+      margin: "0px 7px 0px 7px",
+      marginTop: '40px',
+      // fontSize: "14px",
+    }),
+    ...(window?.mobile && {
+      margin: "0px 4px 0px 4px",
+      
+      // fontSize: "11px",
+    }),
+  }));
+
   TitleSC.displayName = "CalendarNavSC";
+  const DropDownSC = styled("div")<IStyle>(() => ({
+    width: "10vw",
+    height: "10vw",
+    display: "flex",
+    background: "none",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    "&:hover": {
+      background: "rgb(150, 150, 150, .17)",
+      boxShadow: "0px 0px 20px 7px rgb(160, 160, 160, .19)",
+    },
+  }));
+  TitleSC.displayName = "DropDownSC";
+  const dropDownLine = (): React.CSSProperties=>({
+    padding: '2px',
+    background: palette.tertiary()
+
+  })
+  const DropDownListSC = styled("div")<IStyle>(({dropDown, count = 1}) => ({
+    position: 'absolute',
+    top: '100%',
+    right:'5%',
+    width: '50%',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: "hidden",
+    height: '0px',
+    ...paletteSC.dropDown.one,
+    ...(dropDown && {
+      height: `${(count*70).toString()}px`,
+    })
+  }));
+  const DropDownLinkSC = styled("div")<IStyle>(({dropDown}) => ({
+    height:'0px',
+    paddingLeft: '20px',
+    overflow: "hidden",
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '25px',
+    border: `1px solid ${palette.tertiary()}`,
+    transition: 'height .15s ease-out',
+    color:'none',
+    
+    ...(dropDown && {
+      height: '70px',
+      color: palette.tertiary(),
+    }),
+  }));
 
   return {
     leftSideContainer,
@@ -104,7 +213,10 @@ borderTop: 'none'
     HeaderSC,
     TitleSC,
     rightSideContainer,
-    ContactNavSC,
-    CalendarNavSC,
+    LinkSC,
+    DropDownSC,
+    dropDownLine,
+    DropDownListSC,
+    DropDownLinkSC
   };
 };

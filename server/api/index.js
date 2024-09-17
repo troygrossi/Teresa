@@ -1,10 +1,11 @@
 const router = require("express").Router();
 
 const staticRoutes = require("./_static_");
-// const calendarRoutes = require("./calendar");
+const contactRoutes = require('./contact')
+// const contactRoutes = require("./contact");
 
 
-// router.use("/api", calendarRoutes);
+router.use("/api", contactRoutes);
 
 router.use("*", staticRoutes);
 

@@ -1,49 +1,68 @@
 // import { DropDown } from "../../UI/DropDown/DropDown";
 import { Style } from "./_style_/Header.style";
 import { useNavigate } from "react-router-dom";
-import cocktailIcon from '../../assets/cocktail-white.png'
+import cocktailIcon from "../../assets/cocktail-white.png";
+import { useSelector } from "../../redux/redux";
+import { DropDown } from "./Modules/DropDown/DropDown";
+import { useLinks } from "./Modules/links";
+import { DropDownList } from "./Modules/DropDown/DropDownList";
+import { useState } from "react";
 
-const { HeaderSC, TitleSC, ContactNavSC, CalendarNavSC, HomeIconSC, ...style } = Style();
+const { HeaderSC, TitleSC, LinkSC, HomeIconSC, ...style } = Style();
 
 export const Header = () => {
+  const links = useLinks();
+  const window = useSelector((state) => state.window.windowQuery);
   const navigate = useNavigate();
+
+  const [dropDown, setDropDown] = useState(false);
+  document.addEventListener("click", (event) => {
+    const target = event.target as HTMLElement;
+    if (target?.getAttribute("data-drop-down") === "true") {
+      return;
+    }
+    setDropDown(false);
+    console.log("click");
+  });
   return (
-    <HeaderSC className="nav-bar">
-      <div  style={style.leftSideContainer()}>
-        <HomeIconSC 
-         onClick={() => {
-          navigate("/");
-        }}>
-          <img height='100%' width='100%' src={cocktailIcon}></img>
-        </HomeIconSC>
-        <TitleSC>Teresa</TitleSC>
-      </div>
-      <div style={style.rightSideContainer()}>
-        <CalendarNavSC
-          onClick={() => {
-            navigate("/calendar");
-          }}
-        >
-          Calendar
-        </CalendarNavSC>
-        <ContactNavSC
-          onClick={() => {
-            navigate("/contact");
-          }}
-        >
-          Contact
-        </ContactNavSC>
-      </div>
-      {/* <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          transform: "translate(0%, -50%)",
-          left: "30px",
-        }}
-      > */}
-      {/* <DropDown></DropDown> */}
-      {/* </div> */}
-    </HeaderSC>
+    <>
+      <HeaderSC window={window} className="nav-bar">
+        <div style={style.leftSideContainer({ window })}>
+          <HomeIconSC
+            window={window}
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            <img height="100%" width="100%" src={cocktailIcon}></img>
+          </HomeIconSC>
+          <TitleSC window={window}>Cocktails by T</TitleSC>
+        </div>
+        <div style={style.rightSideContainer({ window })}>
+          {window.mobile ? (
+            <DropDown dropDown={dropDown} setDropDown={setDropDown}></DropDown>
+          ) : (
+            links.map((link, index) => (
+              <LinkSC
+                key={index}
+                window={window}
+                onClick={() => {
+                  link.onClick();
+                }}
+              >
+                {link.title}
+              </LinkSC>
+            ))
+          )}
+        </div>
+        {window.mobile && (
+          <DropDownList
+            links={links}
+            dropDown={dropDown}
+            setDropDown={setDropDown}
+          ></DropDownList>
+        )}
+      </HeaderSC>
+    </>
   );
 };

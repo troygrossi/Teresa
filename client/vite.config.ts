@@ -11,7 +11,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: process.env.VITE_PROXY,  // The backend server URL
-        changeOrigin: true,  // Needed for virtual hosted sites
+        // changeOrigin: true,  // Needed for virtual hosted sites
       }
     }
   }
