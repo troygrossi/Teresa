@@ -1,48 +1,50 @@
 import { IInput, INPUT_TYPE } from "../_redux_/contactForm.slice";
 import { useDispatch } from "react-redux";
 import { contactFormActions } from "../_redux_/contactForm.slice";
+import { Style } from "../_style_/contact.style"; // Assuming you import your styled components here
+import { useState } from "react";
+
+
+const { InputSC, LabelSC, inputContainer } = Style();
 export const TextInput = ({ input }: { input: IInput }) => {
   const dispatch = useDispatch();
   const { onChange } = contactFormActions;
+ 
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(!!input.value); // Keep label floating if there's a value
 
   if (input.type === INPUT_TYPE.TEXT_AREA) {
     return (
-      <div>
+      <div style={inputContainer()}>
         {input.error.message}
-      <textarea
-        name={input.key}
-        value={input.value}
-        onChange={(event) => dispatch(onChange({ value: event.target.value, key: input.key }))}
-      ></textarea>
+        <textarea
+          name={input.key}
+          value={input.value}
+          onChange={(event) => dispatch(onChange({ value: event.target.value, key: input.key }))}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        ></textarea>
       </div>
     );
   } else {
-    return (<div>
-      {input.error.message}
-      <input
-        name={input.key}
-        autoComplete={input.autoComplete}
-        type={input.type}
-        value={input.value}
-        onChange={(event) => dispatch(onChange({ value: event.target.value, key: input.key }))}
-      ></input>
+    return (
+      <div style={inputContainer()}>
+        {input.error.message}
+        <InputSC
+          id={input.key}
+          autoComplete={input.autoComplete}
+          type={input.type}
+          value={input.value}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => dispatch(onChange({ value: event.target.value, key: input.key }))}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
+        <LabelSC htmlFor={input.key} isFocused={isFocused || !!input.value}>
+          {input.title}
+        </LabelSC>
       </div>
     );
   }
 };
-
-// AUTOCOMPLETE attribute values for browsers
-// name: Full name of the user.
-// given-name: First name.
-// family-name: Last name.
-// email: Email address.
-// username: Username for login forms.
-// new-password: A new password for registration or password change forms.
-// current-password: The current password for a login or password update form.
-// tel: Telephone number.
-// street-address: The full street address.
-// postal-code: Postal/ZIP code.
-// country: Country name.
-// organization: Company or organization name.
-// cc-number: Credit card number.
-// cc-exp: Credit card expiration date.

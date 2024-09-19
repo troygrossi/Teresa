@@ -23,7 +23,7 @@ export const paletteSC = {
       background: `linear-gradient(45deg, ${palette.primary(
         ".9"
       )} 30%, rgb(150, 150, 150, .8) 40%, ${palette.primary(".9")} 60%)`,
-      boxShadow: "0 8px 32px  rgba( 31, 38, 135, 0.37 )",
+      boxShadow: `0 8px 32px  ${palette.secondary('.4')}`,
       backdropFilter: "blur( 4.5px )",
       webkitBackdropFilter: "blur( 4.5px )",
       borderRadius: "0px 0px 15px 15px",
@@ -53,7 +53,7 @@ export const paletteSC = {
   dropDown: {
     one: {
       background: palette.primary(".9"),
-      boxShadow: "0 8px 32px  rgba( 31, 38, 135, 0.37 )",
+      boxShadow: `0 8px 20px rgb(0, 0, 0), 0 -8px 10px rgb(0, 0, 0)`,
       backdropFilter: "blur( 4.5px )",
       webkitBackdropFilter: "blur( 4.5px )",
 

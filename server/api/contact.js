@@ -10,8 +10,8 @@ const test = (async () => {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "troyjgrossi@gmail.com", // Your Gmail address
-          pass: "Alfredspyro@22",    // Your generated app password or Gmail password
+          user: "ttroygrossit@gmail.com", // Your Gmail address
+          pass: "8769",    // Your generated app password or Gmail password
         },
       });
     
@@ -48,3 +48,36 @@ const test = (async () => {
 
 
 module.exports = router
+
+// Supported services
+// Service names are case insensitive
+
+// "1und1"
+// "AOL"
+// "DebugMail.io"
+// "DynectEmail"
+// "FastMail"
+// "GandiMail"
+// "Gmail"
+// "Godaddy"
+// "GodaddyAsia"
+// "GodaddyEurope"
+// "hot.ee"
+// "Hotmail"
+// "iCloud"
+// "mail.ee"
+// "Mail.ru"
+// "Mailgun"
+// "Mailjet"
+// "Mandrill"
+// "Naver"
+// "Postmark"
+// "QQ"
+// "QQex"
+// "SendCloud"
+// "SendGrid"
+// "SES"
+// "Sparkpost"
+// "Yahoo"
+// "Yandex"
+// "Zoho"

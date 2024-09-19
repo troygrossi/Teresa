@@ -22,7 +22,6 @@ export const Header = () => {
       return;
     }
     setDropDown(false);
-    console.log("click");
   });
   return (
     <>

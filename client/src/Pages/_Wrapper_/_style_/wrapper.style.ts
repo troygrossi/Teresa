@@ -12,14 +12,13 @@ interface IStyle {
 export const Style = () => {
   
     const WrapperSC = styled('div')(()=>({
-        height: '100%',
         width: '100%',
         background: palette.secondary(),
         display: 'flex',
         justifyContent: 'center'
     }))
     const PageSC = styled('div')<IStyle>(({window})=>({
-        height: '100vh',
+        minHeight: '100vh',
         margin: '0px 30px 0px 30px',
         width: '100%',
         borderRadius: '35px 35px 0px 0px',
@@ -42,9 +41,9 @@ export const Style = () => {
           ...(window?.mobile  && {
             margin: '0px',
             marginTop: '50px',
-            outline: `10px solid ${palette.secondary()}`,
+            boxShadow: `inset 8px 0px 32px  ${palette.secondary('.6')}, inset -8px -0px 32px  ${palette.secondary('.6')} `,
+            outline: 'none',
             borderRadius: '0px',
-            outlineOffset: '-6px',
           })
     }))
 

@@ -4,7 +4,7 @@ import {useEffect} from 'react';
 import { useDispatch } from "react-redux";
 import { contactFormActions } from "./_redux_/contactForm.slice";
 // 
-import { TextInput } from "./modules/TextInput";
+import { TextInput } from "./Modules/TextInput";
 
 
 
@@ -12,6 +12,7 @@ const {ContactSC} = Style();
 export const Contact = () => {
 
     const contactForm = useSelector((state)=>state.contact.contactForm);
+    const window = useSelector((state)=>state.window.windowQuery)
         const {inputs, isValid} = contactForm;
     const dispatch = useDispatch();
     const {validateForm} = contactFormActions;
@@ -28,7 +29,8 @@ export const Contact = () => {
        dispatch(validateForm())
       };
     return (
-        <ContactSC>
+        <ContactSC
+        window={window}>
             <h1>Contact</h1>
             <form onSubmit={handleValidateForm}>
       <div>

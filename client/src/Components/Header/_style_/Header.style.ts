@@ -25,7 +25,7 @@ export const Style = () => {
       height: "80px",
     }),
     ...(window?.mobile && {
-      borderRadius: '8px',
+      borderRadius: '0px',
       height: "75px",
     }),
   }));
@@ -48,7 +48,7 @@ export const Style = () => {
   });
   const HomeIconSC = styled("div")<IStyle>(({ window }) => ({
     height: "50%",
-    width: "auto",
+    aspectRatio: "1 / 1",
     cursor: "pointer",
     borderRadius: "10px",
     padding: "10px",
@@ -70,6 +70,7 @@ export const Style = () => {
       padding: "7px",
       height: "50%",
       border: `3px solid ${palette.tertiary()}`,
+      cursor: "auto",
     }),
   }));
   HomeIconSC.displayName = "HomeIconSC";
@@ -176,18 +177,18 @@ export const Style = () => {
     background: palette.tertiary()
 
   })
-  const DropDownListSC = styled("div")<IStyle>(({dropDown, count = 1}) => ({
+  const DropDownListSC = styled("div")<IStyle>(({dropDown}) => ({
     position: 'absolute',
     top: '100%',
-    right:'5%',
-    width: '50%',
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     overflow: "hidden",
-    height: '0px',
+    maxHeight: '0px',
     ...paletteSC.dropDown.one,
+    transition: 'max-height .2s ease-out',
     ...(dropDown && {
-      height: `${(count*70).toString()}px`,
+      maxHeight: '1000px',
     })
   }));
   const DropDownLinkSC = styled("div")<IStyle>(({dropDown}) => ({
@@ -196,15 +197,33 @@ export const Style = () => {
     overflow: "hidden",
     display: 'flex',
     alignItems: 'center',
-    fontSize: '25px',
-    border: `1px solid ${palette.tertiary()}`,
-    transition: 'height .15s ease-out',
+    justifyContent: 'center',
+
+    // border: `1px solid ${palette.tertiary()}`,
+
+    transition: 'height .2s ease-out',
     color:'none',
-    
     ...(dropDown && {
       height: '70px',
       color: palette.tertiary(),
     }),
+  }));
+  const LinkTitleSC = styled("div")<IStyle>(({dropDown}) => ({
+
+    fontSize: '25px',
+    // border: `1px solid ${palette.tertiary()}`,
+    borderBottom: `1px solid ${palette.tertiary()}`,
+
+    color:'none',
+    transition: 'color .2s ease-out',
+    "&:hover": {
+      background: "rgb(200, 200, 200, .2)",
+      boxShadow: "0px 0px 20px 5px rgb(255, 255, 255, .2)",
+    },
+    ...(dropDown && {
+      color: palette.tertiary(),
+    }),
+
   }));
 
   return {
@@ -217,6 +236,7 @@ export const Style = () => {
     DropDownSC,
     dropDownLine,
     DropDownListSC,
-    DropDownLinkSC
+    DropDownLinkSC,
+    LinkTitleSC
   };
 };
