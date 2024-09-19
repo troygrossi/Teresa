@@ -12,7 +12,8 @@ dist
 dist-ssr
 *.local
 .env
-Troy-Grossi-1
+AWS/
+*.pem
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
