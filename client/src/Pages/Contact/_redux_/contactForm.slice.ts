@@ -71,6 +71,8 @@ export interface IFormState {
       message: IInput;
       //
     };
+    loading: boolean,
+    submitted: boolean,
     isValid: boolean;
   };
 }
@@ -136,6 +138,8 @@ const INITIAL_STATE: IFormState = {
         autoComplete: AUTOCOMPLETE.NONE,
       },
     },
+    loading: false,
+    submitted: false,
     isValid: false,
   },
 };
@@ -156,6 +160,7 @@ const slice = createSlice({
   initialState: getInitialState(INITIAL_STATE),
   reducers: {
     onChange(state, action: PayloadAction<{ value: string; key: string }>) {
+      state.contactForm.isValid = false;
       const { key, value } = action.payload;
       if (key in state.contactForm.inputs) {
         state.contactForm.inputs[
@@ -226,6 +231,12 @@ const slice = createSlice({
     resetFormData(state) {
       state.contactForm = INITIAL_STATE.contactForm;
     },
+    setLoading(state, action: PayloadAction<boolean>){
+      state.contactForm.loading = action.payload
+    },
+    setSubmitted(state, action: PayloadAction<boolean>){
+      state.contactForm.submitted = action.payload
+    }
   },
 });
 

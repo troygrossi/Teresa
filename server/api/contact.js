@@ -75,7 +75,10 @@ router.post("/contact", async (req, res) => {
       to: process.env.MAIL_TO,
       subject: process.env.DOMAIN,
       html: generateEmailHtml({ ...req.body }),
-      replyTo: process.env.REPLY_TO
+      replyTo: process.env.REPLY_TO,
+      ses: {
+        ReturnPath: process.env.REPLY_TO,
+      },
     };
 
     // Send email

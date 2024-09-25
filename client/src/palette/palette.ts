@@ -1,6 +1,6 @@
 import { IWindowState } from "../redux/slice/window.slice";
 export const palette = {
-  primary: (a = "1") => {
+  primary: (a: string = "1") => {
     return `rgb(30, 30, 30, ${a})`;
   },
   tertiary: (a = "1") => {
@@ -12,6 +12,13 @@ export const palette = {
   contrast: (a = "1") => {
     return `rgba(230, 230, 230, ${a})`;
   },
+  black: (a = "1") => {
+    return `rgba(0, 0, 0, ${a})`;
+  },
+  white: (a = "1") => {
+    return `rgba(255, 255, 255, ${a})`;
+  },
+  
 };
 export const font = {
   primary: "Times New Roman, Times, serif",

@@ -3,13 +3,13 @@ import { useDispatch } from "react-redux";
 import { contactFormActions } from "../_redux_/contactForm.slice";
 import { Style } from "../_style_/contact.style"; // Assuming you import your styled components here
 import { useState } from "react";
+import { useSelector } from "../../../redux/redux";
 
-
-const { InputSC, LabelSC, inputContainer } = Style();
+const { InputSC, TextareaSC, LabelSC, ErrorSC, inputContainer } = Style();
 export const TextInput = ({ input }: { input: IInput }) => {
   const dispatch = useDispatch();
   const { onChange } = contactFormActions;
- 
+  const { submitted } = useSelector((state) => state.contact.contactForm);
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
@@ -18,26 +18,40 @@ export const TextInput = ({ input }: { input: IInput }) => {
   if (input.type === INPUT_TYPE.TEXT_AREA) {
     return (
       <div style={inputContainer()}>
-        {input.error.message}
-        <textarea
-          name={input.key}
+        <ErrorSC>{input.error.message}</ErrorSC>
+        <TextareaSC
+          readOnly={submitted ? true : false}
+          id={input.key}
           value={input.value}
-          onChange={(event) => dispatch(onChange({ value: event.target.value, key: input.key }))}
+          onChange={(event) =>
+            dispatch(onChange({ value: event.target.value, key: input.key }))
+          }
           onFocus={handleFocus}
           onBlur={handleBlur}
-        ></textarea>
+        ></TextareaSC>
+        <LabelSC
+          isTextarea={true}
+          htmlFor={input.key}
+          isFocused={isFocused || !!input.value}
+        >
+          {input.title}
+        </LabelSC>
       </div>
     );
   } else {
     return (
       <div style={inputContainer()}>
-        {input.error.message}
+        <ErrorSC>{input.error.message}</ErrorSC>
+
         <InputSC
+          readOnly={submitted ? true : false}
           id={input.key}
           autoComplete={input.autoComplete}
           type={input.type}
           value={input.value}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => dispatch(onChange({ value: event.target.value, key: input.key }))}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            dispatch(onChange({ value: event.target.value, key: input.key }))
+          }
           onFocus={handleFocus}
           onBlur={handleBlur}
         />

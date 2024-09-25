@@ -10,6 +10,7 @@ interface IStyle {
 
 export const Style = () => {
   const HeaderSC = styled("div")<IStyle>(({ window }) => ({
+    zIndex: 10,
     position: "fixed",
     boxSizing: "border-box",
     fontFamily: font.primary,
