@@ -180,7 +180,7 @@ const slice = createSlice({
         input: IInput;
         valType: VALIDATE;
       }): IInput["error"] => {
-        console.log(valType);
+
         switch (valType) {
           case VALIDATE.REQUIRED:
             if (!validateRequired(input.value)) {
@@ -191,7 +191,6 @@ const slice = createSlice({
             break;
           case VALIDATE.IS_EMAIL:
             if (!validateIsEmail(input.value)) {
-              console.log(valType);
               isValid = false;
               input.error.isError = true;
               input.error.message = "Must use a valid email";
