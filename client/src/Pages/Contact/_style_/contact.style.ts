@@ -62,7 +62,7 @@ export const Style = () => {
     width: "100%",
   });
   const formContainer = (): React.CSSProperties => ({
-    flexGrow: 1,
+    // flexGrow: 1,
     width: '80%',
 display: 'flex',
 flexDirection: 'column',

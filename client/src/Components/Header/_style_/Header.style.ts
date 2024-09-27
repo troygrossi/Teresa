@@ -14,20 +14,21 @@ export const Style = () => {
     position: "fixed",
     boxSizing: "border-box",
     fontFamily: font.primary,
-    height: "150px",
+    height: "100px",
     width: "100%",
     ...paletteSC.header.one(window),
     //
-    transition: "height 0.15s ease-out",
+    transition:
+    "all  0.1s ease-out",
     ...(window?.tabletBig && {
-      height: "100px",
+      height: "80px",
     }),
     ...(window?.tabletSmall && {
-      height: "80px",
+      height: "70px",
     }),
     ...(window?.mobile && {
       borderRadius: '0px',
-      height: "75px",
+      height: "60px",
     }),
   }));
   HeaderSC.displayName = "HeaderSC";
@@ -43,7 +44,7 @@ export const Style = () => {
     //
     boxSizing: "border-box",
     ...(window?.mobile && {
-      left: "4%",
+      left: "3%",
       width: "70%",
     }),
   });
@@ -57,19 +58,24 @@ export const Style = () => {
     border: `5px solid ${palette.tertiary()}`,
 
     transition:
-      "box-shadow 0.1s ease-out, background 0.1s ease-out, padding 0.1s ease-out",
+      "all  0.1s ease-out",
     "&:hover": {
       background: "rgb(50, 50, 50, .2)",
       boxShadow: "0px 0px 20px 5px rgb(255, 255, 255, .2)",
     },
-    ...(window?.tabletSmall && {
+    ...(window?.tabletBig && {
       padding: "5px",
       height: "50%",
       border: `4px solid ${palette.tertiary()}`,
     }),
+    ...(window?.tabletSmall && {
+      padding: "6px",
+      height: "45%",
+      border: `3px solid ${palette.tertiary()}`,
+    }),
     ...(window?.mobile && {
       padding: "7px",
-      height: "50%",
+      height: "40%",
       border: `3px solid ${palette.tertiary()}`,
       cursor: "auto",
     }),
@@ -77,25 +83,31 @@ export const Style = () => {
   HomeIconSC.displayName = "HomeIconSC";
   const TitleSC = styled("div")<IStyle>(({ window }) => ({
     color: palette.tertiary(),
-    height: "90%",
     display: "flex",
     alignItems: "center",
-    //
-    paddingTop: "50px",
-    marginLeft: "50px",
-    fontSize: "clamp(10px, 5vw, 70px)",
+    
+    // 
+    transform: 'translateY(.3em)',
+    transition:
+    "all .15s ease-out",
+    marginLeft: "40px",
+    fontSize: '50px',
     ...(window?.tabletBig && {
+      fontSize: '35px',
+      transform: 'translateY(.4em)',
       marginLeft: "25px",
-      paddingTop: "30px",
+
     }),
     ...(window?.tabletSmall && {
-      marginLeft: "20px",
-      paddingTop: "30px",
+      marginLeft: "15px",
+      fontSize: '25px',
+      transform: 'translateY(.6em)'
     }),
     ...(window?.mobile && {
-      marginLeft: "15px",
-      fontSize: "7vw",
-      paddingTop: "25px",
+      marginLeft: "10px",
+      fontSize: '25px',
+      transform: 'translateY(.4em)'
+      // paddingTop: "25px",
     }),
   }));
   TitleSC.displayName = "TitleSC";
@@ -103,7 +115,7 @@ export const Style = () => {
   const rightSideContainer = ({ window }: IStyle): React.CSSProperties => ({
     position: "absolute",
     right: "5%",
-    width: "45%",
+    width: "50%",
     height: "100%",
     display: "flex",
     justifyContent: "flex-end",
@@ -111,7 +123,8 @@ export const Style = () => {
     //
     boxSizing: "border-box",
 
-    transition: "right 0.15s ease-out",
+    transition:
+    "all  0.1s ease-out",
     ...(window?.tabletBig && {
       right: "3%",
     }),
@@ -124,8 +137,8 @@ export const Style = () => {
   });
 
   const LinkSC = styled("div")<IStyle>(({ window }) => ({
-    fontSize: "clamp(14px, 2vw, 50px)",
-    margin: "0px 20px 0px 20px",
+
+    
     color: palette.tertiary(),
     height: "40px",
     display: "flex",
@@ -134,28 +147,29 @@ export const Style = () => {
     cursor: "pointer",
     boxSizing:'border-box',
     padding: "2px",
-    marginTop: '75px',
+    // 
     transition:
-      "box-shadow 0.15s ease-out, background 0.15s ease-out, margin 0.15s ease-out",
+    "all  0.1s ease-out",
+    margin: "0px 20px 0px 20px",
+    transform: 'translateY(.67em)',
+    fontSize: '35px',
     "&:hover": {
       background: "rgb(150, 150, 150, .17)",
       boxShadow: "0px 0px 20px 7px rgb(160, 160, 160, .19)",
     },
     ...(window?.tabletBig &&
       {
-        // margin: "0px 12px 0px 12px",
-        // fontSize: "23px",
-        marginTop: '55px',
+        margin: "0px 10px 0px 10px",
+        transform: 'translateY(.7em)',
+        fontSize: '25px',
       }),
     ...(window?.tabletSmall && {
       margin: "0px 7px 0px 7px",
-      marginTop: '40px',
-      // fontSize: "14px",
+      transform: 'translateY(1.3em)',
+      fontSize: '15px',
     }),
     ...(window?.mobile && {
       margin: "0px 4px 0px 4px",
-      
-      // fontSize: "11px",
     }),
   }));
 
@@ -187,7 +201,8 @@ export const Style = () => {
     overflow: "hidden",
     maxHeight: '0px',
     ...paletteSC.dropDown.one,
-    transition: 'max-height .2s ease-out',
+    transition:
+      "all  0.1s ease-out",
     ...(dropDown && {
       maxHeight: '1000px',
     })
@@ -202,7 +217,8 @@ export const Style = () => {
 
     // border: `1px solid ${palette.tertiary()}`,
 
-    transition: 'height .2s ease-out',
+    transition:
+    "all  0.1s ease-out",
     color:'none',
     ...(dropDown && {
       height: '70px',
@@ -216,7 +232,8 @@ export const Style = () => {
     borderBottom: `1px solid ${palette.tertiary()}`,
 
     color:'none',
-    transition: 'color .2s ease-out',
+    transition:
+    "all  0.1s ease-out",
     "&:hover": {
       background: "rgb(200, 200, 200, .2)",
       boxShadow: "0px 0px 20px 5px rgb(255, 255, 255, .2)",

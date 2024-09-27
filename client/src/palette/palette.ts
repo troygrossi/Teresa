@@ -7,7 +7,7 @@ export const palette = {
     return `rgba(212, 175, 55, ${a})`;
   },
   secondary: (a = "1") => {
-    return `rgb(0, 128, 128, ${a})`;
+    return `rgb(0, 150, 150, ${a})`;
   },
   contrast: (a = "1") => {
     return `rgba(230, 230, 230, ${a})`;
@@ -33,7 +33,7 @@ export const paletteSC = {
       boxShadow: `0 8px 32px  ${palette.secondary('.4')}`,
       backdropFilter: "blur( 4.5px )",
       webkitBackdropFilter: "blur( 4.5px )",
-      borderRadius: "0px 0px 15px 15px",
+      borderRadius: "0px 0px 10px 10px",
       border: "3px solid rgba( 255, 255, 255, 0.18 )",
       borderTop: "none",
 
@@ -53,7 +53,7 @@ export const paletteSC = {
 
         background: `linear-gradient(45deg, ${palette.primary(
           ".9"
-        )} 35%, rgb(150, 150, 150, .8) 45%, ${palette.primary(".9")} 60%)`,
+        )} 50%, rgb(150, 150, 150, .8) 65%, ${palette.primary(".9")} 80%)`,
       }),
     }),
   },
