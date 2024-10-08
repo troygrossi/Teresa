@@ -3,9 +3,9 @@ import { Style } from "./_style_/Header.style";
 import { useNavigate } from "react-router-dom";
 import cocktailIcon from "../../assets/cocktail-white.png";
 import { useSelector } from "../../redux/redux";
-import { DropDown } from "./Modules/DropDown/DropDown";
-import { useLinks } from "./Modules/links";
-import { DropDownList } from "./Modules/DropDown/DropDownList";
+import { DropDown } from "./Header.Components/DropDown/DropDown";
+import { useLinks } from "./Header.Components/links";
+import { DropDownList } from "./Header.Components/DropDown/DropDownList";
 import { useState } from "react";
 
 const { HeaderSC, TitleSC, LinkSC, HomeIconSC, ...style } = Style();

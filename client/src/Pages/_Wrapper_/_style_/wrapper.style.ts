@@ -2,6 +2,8 @@
 import {styled} from '@mui/material';
 import {palette} from '../../../palette/palette';
 import { IWindowState } from "../../../redux/slice/window.slice";
+import photo from "../../../assets/photos/coacktail-background.png";
+import { resizeRatio } from '../../../modules/resizeRatio';
 
 interface IStyle {
   window?: IWindowState['windowQuery']
@@ -13,29 +15,31 @@ export const Style = () => {
   
     const WrapperSC = styled('div')(()=>({
         width: '100%',
-        background: palette.secondary(),
+        height: 'auto',
+        position: 'relative',
+        background: palette.primary(),
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        boxShadow: `inset 20px 0px 15px  ${palette.secondary('.6')}, inset -20px -0px 15px  ${palette.secondary('.6')} `,
     }))
     const PageSC = styled('div')<IStyle>(({window})=>({
+
         minHeight: '100vh',
-        margin: '30px 30px 50px 30px',
+        margin: resizeRatio('30px'),
         width: '100%',
         borderRadius: '35px 35px 35px 35px',
-        outline: `10px solid ${palette.tertiary('.8')}`,
-        outlineOffset: '-10px',
+        border: '1px dotted red',
+        // outline: `10px solid ${palette.tertiary('.8')}`,
+        // outlineOffset: '-10px',
         maxWidth: '1600px',
-        boxShadow: '20px 20px 60px 0px rgb(0, 0, 0, .6), -20px -20px 60px rgb(0, 0, 0, .6)',
-        
-        
+      
          background: palette.primary(),
+         overflow: 'hidden',
          ...(window?.tabletBig  && {
         
           }),
           ...(window?.tabletSmall  && {
         
-            outline: `4px solid ${palette.tertiary()}`,
-            outlineOffset: '-12px',
           }),
           ...(window?.mobile  && {
             margin: '0px',
@@ -45,11 +49,25 @@ export const Style = () => {
             borderRadius: '0px',
           })
     }))
+    const WallpaperSC = styled('div')<IStyle>(({window})=>({
+      position: 'absolute',
+      backgroundImage: `url(${photo})`,
+      backgroundSize: "35% auto",
+      backgroundPosition: "center",
+      backgroundAttachment: "fixed",
+      opacity: .1,
+      height: "100%", // Takes up double the viewport height
+      width: '100%',
+      display: "flex",
+      color: "white",
+
+  }))
 
 
     return {
         WrapperSC,
-        PageSC
+        PageSC,
+        WallpaperSC
     }
 }
 
