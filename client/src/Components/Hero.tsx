@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import photo2 from "../assets/photos/imageT2.2.jpg";
-import photo1 from "../assets/photos/image5hs.png";
+import photo1 from "../assets/photos/image5hs.webp";
 import { palette } from "../palette/palette";
 import { useSelector } from "../redux/redux";
 import { resizeRatio } from "../modules/resizeRatio";
@@ -9,27 +9,26 @@ export const Hero = () => {
   const [isHovered, setIsHovered] = useState(false);
   const window = useSelector((state)=>state.window.windowQuery)
 
-  // Hero section inline styles
 
   const imageStyle: React.CSSProperties = {
-    position: "absolute", // To ensure the overlay and content are positioned correctly
+    position: "absolute",
     height: "100%",
     width: "100%",
     backgroundImage: `url(${photo2})`,
     maskImage: `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .2) 2%, rgba(0, 0, 0, 1) 10%)`,
 
-    backgroundSize: "cover", // Ensure the image covers the container
+    backgroundSize: "cover", 
     backgroundPosition: "center",
     borderRadius: "10px",
     backgroundRepeat: "no-repeat",
-    zIndex: 1, // Lower z-index than the overlay
+    zIndex: 1, 
   };
 
-  // Overlay inline styles for the blue tint
+
   const overlayStyle: React.CSSProperties = {
     position: "absolute",
-    width: "100%", // Full width to cover the entire section
-    height: "100%", // Match the image height
+    width: "100%", 
+    height: "100%", 
     top: 0,
     left: 0,
     borderRadius: "10px",
@@ -39,7 +38,7 @@ export const Hero = () => {
       "0"
     )} 70%, ${palette.white("0")} 100%`,
     // maskImage: `linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .2) 2%, rgba(0, 0, 0, 1) 10%)`,
-    zIndex: 9, // Ensures it sits above the image
+    zIndex: 9, 
   };
 
   const containerStyle1: React.CSSProperties = {
@@ -50,13 +49,10 @@ export const Hero = () => {
     height: resizeRatio('500px'), 
 
     width: "100vw",
-    // transition: 'all .05s ease',
 
-    // ...(window.mobile && {
-
-    //   height: resizeRatio2('300px'),
-
-    // })
+    ...(window.mobile && {
+     height: resizeRatio('400px',{mobile: true}),
+    })
 
   };
 
@@ -68,21 +64,13 @@ export const Hero = () => {
   const imgStyle: React.CSSProperties = {
   height: '100%',
     objectFit: "cover",
-    borderRadius: "10px", // Optional: Add some border-radius to smooth edges inside the hexagon
+    borderRadius: "10px", 
     position: "absolute",
+    backgroundColor: 'none',
   bottom: '0px',
     right: '-5%',
     transform: "translateX(50%) ",
     filter: `drop-shadow(0px 10px 10px ${palette.black()})`,
-    zIndex: 3,
-    // ...(window.tabletSmall && {
-    //   height: resizeRatio('170px'),
-    //   right: '-5px'
-    // }),
-    // ...(window.mobile && {
-    //   height: resizeRatio2('170px'),
-    //   right: '-5px'
-    // })
 
   };
 
@@ -123,26 +111,10 @@ export const Hero = () => {
     background: palette.primary('.9'),
     backdropFilter: 'blur(3px)',
       boxShadow: `10px 10px 20px ${palette.black('.5')}`,
-      // ...(window.tabletSmall && {
-      //   marginTop: '30px',
-      //   padding: '15px',
-      //   fontSize: resizeRatio2('38px'),
-      //   border: `4px solid ${palette.tertiary('.7')}`
-      //   // padding: resizeRatio('25px'),
-      //   // fontSize: resizeRatio('80px'),
-      
-      //   // border: `${resizeRatio('7px')} solid ${palette.tertiary('.7')}`,
-      // }),
-      // ...(window.mobile && {
-      //   marginTop: '30px',
-      //   padding: resizeRatio2('25px'),
-      //   fontSize: resizeRatio2('38px'),
-      //   border: `4px solid ${palette.tertiary('.7')}`
-      //   // padding: resizeRatio('25px'),
-      //   // fontSize: resizeRatio('80px'),
-      
-      //   // border: `${resizeRatio('7px')} solid ${palette.tertiary('.7')}`,
-      // })
+
+      ...(window.mobile && {
+        fontSize: resizeRatio('47px', {mobile: true}),
+      })
   };
 
   
@@ -195,7 +167,7 @@ export const Hero = () => {
         <div style={title3Style}>
           Propietor/Bartendress
         </div>
-        <img style={imgStyle} src={photo1} alt="Cool Image" />
+        <img loading='lazy' style={imgStyle} src={photo1} alt="Cool Image" />
         </div>
       </div>
       
