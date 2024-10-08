@@ -2,7 +2,7 @@
 import {styled} from '@mui/material';
 import {palette} from '../../../palette/palette';
 import { IWindowState } from "../../../redux/slice/window.slice";
-import photo from "../../../assets/photos/coacktail-background.png";
+import photo from "../../../assets/photos/cocktail-background.webp";
 import { resizeRatio } from '../../../modules/resizeRatio';
 
 interface IStyle {
