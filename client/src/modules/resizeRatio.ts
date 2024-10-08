@@ -9,7 +9,7 @@ const MOBILE_SCREEN_WIDTH = 480;
 // ex: if the height exceeds a 9/16 ratio then the default value(vw) remains the true value
 export const resizeRatio = (
   pxString: string,
-  { mobile = false }: { mobile: boolean } | object = {}
+  { mobile = false }: { mobile?: boolean } = {}
 ) => {
   if(mobile){
     const pxValue = parseFloat(pxString);
