@@ -18,9 +18,9 @@ export const Style = () => {
     justifyContent: 'center',
     textAlign: 'center',
     alignItems: 'center',
-    margin: "150px auto 0px auto",
+    margin: "20vh auto 0px auto",
     width: "50%",
-    height: "600px",
+    height: "70vh",
     color: `${palette.tertiary()}`,
     backgroundColor: "none",
     // background: `linear-gradient(45deg, ${palette.secondary(
@@ -32,15 +32,15 @@ export const Style = () => {
     border: "3px solid rgba( 255, 255, 255, 0.18 )",
     ...(window?.tabletBig && {
       width: "60%",
-      margin: "100px auto 0px auto",
+      margin: "18vh auto 0px auto",
     }),
     ...(window?.tabletSmall && {
       width: "70%",
-      margin: "80px auto 0px auto",
+      margin: "16vh auto 0px auto",
     }),
     ...(window?.mobile && {
       width: "90%",
-      margin: "50px auto 0px auto",
+      margin: "150px auto 0px auto",
     }),
   }));
   const HeaderSC = styled("h1")<IStyle>(() => ({
@@ -58,22 +58,23 @@ export const Style = () => {
 
   const inputContainer = (): React.CSSProperties => ({
     position: "relative",
-    margin: "20px 0px",
+    margin: "50px 0px",
     width: "100%",
   });
   const formContainer = (): React.CSSProperties => ({
-    // flexGrow: 1,
+    flexGrow: 1,
     width: '80%',
-display: 'flex',
-flexDirection: 'column',
-justifyContent: 'center'
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    padding: '40px 0'
   });
 
   const InputSC = styled("input")<IStyle>(() => ({
     width: "100%",
     padding: "12px",
     fontSize: "16px",
-    height: '40px',
+    height: '50px',
     boxSizing: "border-box",
     border: '2px solid #ccc',
     borderRadius: '8px',
@@ -91,7 +92,7 @@ justifyContent: 'center'
     width: "100%",
     padding: "12px",
     fontSize: "16px",
-    height:'150px',
+    height:'180px',
     boxSizing: "border-box",
     border: '2px solid #ccc',
     borderRadius: '8px',

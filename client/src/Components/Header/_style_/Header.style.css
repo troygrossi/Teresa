@@ -1,0 +1,17 @@
+.header-logo:hover {
+  background: rgb(50, 50, 50, .2) !important;
+  box-shadow: 0px 0px 20px 5px rgb(255, 255, 255, .2) !important;
+}
+
+.header-link:hover {
+  background: rgb(150, 150, 150, .17) !important;
+  box-shadow: 0px 0px 12px 3px rgb(255, 255, 255, .1) !important;
+}
+
+.dropdown-button:hover {
+  background: rgba(178, 165, 152, 0.1) !important;
+}
+
+.dropdown-link:hover {
+  background: rgba(178, 165, 152, 0.1) !important;
+}

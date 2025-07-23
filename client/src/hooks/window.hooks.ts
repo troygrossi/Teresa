@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 
 import { useDispatch } from "react-redux";
 import { windowActions } from "../redux/slice/window.slice";

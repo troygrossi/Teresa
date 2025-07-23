@@ -20,7 +20,8 @@ app.use(cors({
 }));
 // 
 
-console.log
+// Middleware to parse json bodies to js object format
+// looks for headers: {'Content}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../client/dist')));
